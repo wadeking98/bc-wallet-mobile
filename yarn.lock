@@ -3037,9 +3037,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hyperledger/aries-bifold-core@npm:1.0.0-alpha.319":
-  version: 1.0.0-alpha.319
-  resolution: "@hyperledger/aries-bifold-core@npm:1.0.0-alpha.319"
+"@hyperledger/aries-bifold-core@portal:bifold/packages/legacy/core::locator=bc-wallet-mobile%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@hyperledger/aries-bifold-core@portal:bifold/packages/legacy/core::locator=bc-wallet-mobile%40workspace%3A."
   peerDependencies:
     "@credo-ts/anoncreds": 0.5.9
     "@credo-ts/askar": 0.5.9
@@ -3114,13 +3114,12 @@ __metadata:
     uuid: ^9.0.0
   bin:
     bifold: bin/bifold
-  checksum: da78b122099ba85883ea1517fb979faf595b24784bc3c91f9f68a5185c38b059b7548f320c3be2f1f6411fb4e6bf463989c609c1d22dfb204a63777ea10f16b4
   languageName: node
-  linkType: hard
+  linkType: soft
 
-"@hyperledger/aries-bifold-remote-logs@npm:1.0.0-alpha.319":
-  version: 1.0.0-alpha.319
-  resolution: "@hyperledger/aries-bifold-remote-logs@npm:1.0.0-alpha.319"
+"@hyperledger/aries-bifold-remote-logs@portal:bifold/packages/remote-logs::locator=bc-wallet-mobile%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@hyperledger/aries-bifold-remote-logs@portal:bifold/packages/remote-logs::locator=bc-wallet-mobile%40workspace%3A."
   peerDependencies:
     "@credo-ts/core": 0.5.9
     axios: ^1.4.0
@@ -3128,45 +3127,41 @@ __metadata:
     react: ^18.2.0
     react-native: ^0.72.5
     react-native-logs: ^5.1.0
-  checksum: d0813a73b3f6fca1840c7a6614fee0afaf5d1cc42a367c53d2428175d7b9fc685895e9403cd91eb7be8b87feeec6e7476c5ffa2abd6834b52054403e2d1cf2c4
   languageName: node
-  linkType: hard
+  linkType: soft
 
-"@hyperledger/aries-bifold-verifier@npm:1.0.0-alpha.319":
-  version: 1.0.0-alpha.319
-  resolution: "@hyperledger/aries-bifold-verifier@npm:1.0.0-alpha.319"
+"@hyperledger/aries-bifold-verifier@portal:bifold/packages/verifier::locator=bc-wallet-mobile%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@hyperledger/aries-bifold-verifier@portal:bifold/packages/verifier::locator=bc-wallet-mobile%40workspace%3A."
   peerDependencies:
     "@credo-ts/anoncreds": 0.5.9
     "@credo-ts/core": 0.5.9
     "@credo-ts/react-hooks": ^0.6.0
     "@hyperledger/anoncreds-shared": 0.2.2
     react: ^18.2.0
-  checksum: df868e83a05c7aeb9f5e123ccb07dc583637c1f6ffc413546d62dc52d35aed8453bc02e49124572093fab2a14510fa7f1f16da2e9c9206bdca41c42270eedc3b
   languageName: node
-  linkType: hard
+  linkType: soft
 
-"@hyperledger/aries-oca@npm:1.0.0-alpha.319":
-  version: 1.0.0-alpha.319
-  resolution: "@hyperledger/aries-oca@npm:1.0.0-alpha.319"
+"@hyperledger/aries-oca@portal:bifold/packages/oca::locator=bc-wallet-mobile%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@hyperledger/aries-oca@portal:bifold/packages/oca::locator=bc-wallet-mobile%40workspace%3A."
   dependencies:
     "@credo-ts/anoncreds": "npm:0.5.9"
     "@credo-ts/core": "npm:0.5.9"
     axios: "npm:^1.4.0"
     lodash.startcase: "npm:^4.4.0"
     react-native-fs: "npm:^2.16.6"
-  checksum: a3f8d96ac6ca2d5662a0fee9d4103f74407d3094a0f9d563c0796a9eb2b69f4c67cfd4fff614dce9c3a37ece6ce1b94c68e1df7181036b247600571bed1b3778
   languageName: node
-  linkType: hard
+  linkType: soft
 
-"@hyperledger/aries-react-native-attestation@npm:1.0.0-alpha.319":
-  version: 1.0.0-alpha.319
-  resolution: "@hyperledger/aries-react-native-attestation@npm:1.0.0-alpha.319"
+"@hyperledger/aries-react-native-attestation@portal:bifold/packages/react-native-attestation::locator=bc-wallet-mobile%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@hyperledger/aries-react-native-attestation@portal:bifold/packages/react-native-attestation::locator=bc-wallet-mobile%40workspace%3A."
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 48e5b1242b9843d01f5813825e26f90125eabebac41aa62f6a922b0ff5b73409d7dc6383ad65f0c662d82e023bbce4600f69096579c7e6756cc49d81416ceb6f
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "@hyperledger/indy-vdr-react-native@npm:0.2.2":
   version: 0.2.2

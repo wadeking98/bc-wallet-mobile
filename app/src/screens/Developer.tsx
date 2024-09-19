@@ -2,7 +2,7 @@ import { useAgent } from '@credo-ts/react-hooks'
 import { useTheme, useStore, testIdWithKey, DispatchAction, Screens } from '@hyperledger/aries-bifold-core'
 import { RemoteLogger, RemoteLoggerEventTypes } from '@hyperledger/aries-bifold-remote-logs'
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DeviceEventEmitter, Modal, StyleSheet, Switch, Text, Pressable, View, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -33,6 +33,7 @@ const Settings: React.FC = () => {
   const [remoteLoggingEnabled, setRemoteLoggingEnabled] = useState(logger?.remoteLoggingEnabled)
   const [enableShareableLink, setEnableShareableLink] = useState(!!store.preferences.enableShareableLink)
   const [enableProxy, setEnableProxy] = useState(!!store.developer.enableProxy)
+  const [useAltRootstack, setUseAltRootstack] = useState(!!store.useAltRootstack)
   const navigation = useNavigation()
 
   const styles = StyleSheet.create({
@@ -260,6 +261,18 @@ const Settings: React.FC = () => {
     setEnableProxy((previousState) => !previousState)
   }
 
+  const toggleRootStack = () => {
+    dispatch({
+      type: BCDispatchAction.UPDATE_ALT_ROOTSTACK,
+      payload: [!useAltRootstack],
+    })
+    setUseAltRootstack((previousState) => !previousState)
+  }
+
+  useEffect(() => {
+    console.log('useAltRootstack effect', store.useAltRootstack)
+  }, [store.useAltRootstack])
+
   return (
     <SafeAreaView edges={['bottom', 'left', 'right']}>
       <Modal
@@ -448,6 +461,19 @@ const Settings: React.FC = () => {
             ios_backgroundColor={ColorPallet.grayscale.lightGrey}
             onValueChange={toggleEnableProxySwitch}
             value={enableProxy}
+          />
+        </SectionRow>
+
+        <SectionRow
+          title={"switch rootstack"}
+          testID={testIdWithKey('toggle rootstack')}
+        >
+          <Switch
+            trackColor={{ false: ColorPallet.grayscale.lightGrey, true: ColorPallet.brand.primaryDisabled }}
+            thumbColor={useAltRootstack ? ColorPallet.brand.primary : ColorPallet.grayscale.mediumGrey}
+            ios_backgroundColor={ColorPallet.grayscale.lightGrey}
+            onValueChange={toggleRootStack}
+            value={useAltRootstack}
           />
         </SectionRow>
       </ScrollView>

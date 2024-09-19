@@ -329,21 +329,22 @@ const Splash = () => {
 
         if (agent) {
           logger.info('Agent already initialized, restarting...')
+          if (!agent.wallet.isInitialized) {
+            try {
+              await agent.wallet.open({
+                id: walletSecret.id,
+                key: walletSecret.key,
+              })
+            } catch (error) {
+              logger.error('Error opening existing wallet', error as BifoldError)
 
-          try {
-            await agent.wallet.open({
-              id: walletSecret.id,
-              key: walletSecret.key,
-            })
-          } catch (error) {
-            logger.error('Error opening existing wallet', error as BifoldError)
-
-            throw new BifoldError(
-              'Wallet Service',
-              'There was a problem unlocking the wallet.',
-              (error as Error).message,
-              1047
-            )
+              throw new BifoldError(
+                'Wallet Service',
+                'There was a problem unlocking the wallet.',
+                (error as Error).message,
+                1047
+              )
+            }
           }
 
           await agent.mediationRecipient.initiateMessagePickup()

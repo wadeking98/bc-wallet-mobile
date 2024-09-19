@@ -30,11 +30,16 @@ export interface DismissPersonCredentialOffer {
 export interface BCState extends BifoldState {
   developer: Developer
   dismissPersonCredentialOffer: DismissPersonCredentialOffer
+  useAltRootstack: boolean
 }
 
 enum DeveloperDispatchAction {
   UPDATE_ENVIRONMENT = 'developer/updateEnvironment',
   TOGGLE_PROXY = 'developer/toggleProxy',
+}
+
+enum RootStackDispatchAction {
+  UPDATE_ALT_ROOTSTACK = 'rootStack/updateAltRootstack',
 }
 
 enum DismissPersonCredentialOfferDispatchAction {
@@ -49,11 +54,13 @@ export type BCDispatchAction =
   | DeveloperDispatchAction
   | DismissPersonCredentialOfferDispatchAction
   | RemoteDebuggingDispatchAction
+  | RootStackDispatchAction
 
 export const BCDispatchAction = {
   ...DeveloperDispatchAction,
   ...DismissPersonCredentialOfferDispatchAction,
   ...RemoteDebuggingDispatchAction,
+  ...RootStackDispatchAction,
 }
 
 export const iasEnvironments: Array<IASEnvironment> = [
@@ -105,6 +112,7 @@ export const initialState: BCState = {
   preferences: { ...defaultState.preferences, useDataRetention: false, disableDataRetentionOption: true },
   developer: developerState,
   dismissPersonCredentialOffer: dismissPersonCredentialOfferState,
+  useAltRootstack: false,
 }
 
 const bcReducer = (state: BCState, action: ReducerAction<BCDispatchAction>): BCState => {
@@ -148,6 +156,10 @@ const bcReducer = (state: BCState, action: ReducerAction<BCDispatchAction>): BCS
         JSON.stringify(newState.dismissPersonCredentialOffer)
       )
       return newState
+    }
+    case RootStackDispatchAction.UPDATE_ALT_ROOTSTACK: {
+      const useAltRootstack: boolean = (action?.payload || []).pop() || false
+      return { ...state, useAltRootstack }
     }
     default:
       return state

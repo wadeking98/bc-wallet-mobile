@@ -35,6 +35,7 @@ import { proofRequestTourSteps } from './src/components/tours/ProofRequestTourSt
 import { surveyMonkeyUrl, surveyMonkeyExitUrl } from './src/constants'
 import WebDisplay from './src/screens/WebDisplay'
 import { initialState, reducer } from './src/store'
+import SwapRootStack from './src/components/SwapRootStack'
 
 const { theme, localization } = bcwallet
 
@@ -90,7 +91,7 @@ const App = () => {
                     overlayColor={'black'}
                     overlayOpacity={0.7}
                   >
-                    <RootStack />
+                    <SwapRootStack />
                   </TourProvider>
                   <Toast topOffset={15} config={toastConfig} />
                 </NetworkProvider>
