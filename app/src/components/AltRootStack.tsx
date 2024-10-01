@@ -34,7 +34,7 @@ const mainScreen: React.FC = () => {
     const toggleRootStack = () => {
         dispatch({
             type: BCDispatchAction.UPDATE_ALT_ROOTSTACK,
-            payload: [!useAltRootstack],
+            payload: [{useAltRootstack: !useAltRootstack, lastStackRouteName: 'Services Card App'}],
         })
         setUseAltRootstack((previousState) => !previousState)
     }
@@ -60,7 +60,11 @@ const mainScreen: React.FC = () => {
 
 }
 
-const AltRootStack: React.FC = () => {
+interface RootStackProps {
+    initialRouteName?: string
+}
+
+const AltRootStack: React.FC<RootStackProps> = ({ initialRouteName }) => {
     const Stack = createStackNavigator()
     const [splash, { enableImplicitInvitations, enableReuseConnections }, logger, OnboardingStack, loadState] =
         useServices([TOKENS.SCREEN_SPLASH, TOKENS.CONFIG, TOKENS.UTIL_LOGGER, TOKENS.STACK_ONBOARDING, TOKENS.LOAD_STATE])
@@ -88,9 +92,9 @@ const AltRootStack: React.FC = () => {
         headerTitle: (props: { children: React.ReactNode }) => <HeaderTitle {...props} />,
         headerBackAccessibilityLabel: t('Global.Back'),
     }
-
+    console.log('alt rootstack initialRouteName', initialRouteName)
     return (
-        <Stack.Navigator initialRouteName={'Services Card App'} screenOptions={options}>
+        <Stack.Navigator initialRouteName={initialRouteName ?? 'Services Card App'} screenOptions={options}>
             <Stack.Screen name={'Services Card App'} component={mainScreen} options={{
                 ...options, headerLeft: () => {
                     return (

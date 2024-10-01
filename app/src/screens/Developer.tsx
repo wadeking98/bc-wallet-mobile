@@ -264,7 +264,7 @@ const Settings: React.FC = () => {
   const toggleRootStack = () => {
     dispatch({
       type: BCDispatchAction.UPDATE_ALT_ROOTSTACK,
-      payload: [!useAltRootstack],
+      payload: [{useAltRootstack: !useAltRootstack, lastStackRouteName: Screens.Developer}],
     })
     setUseAltRootstack((previousState) => !previousState)
   }

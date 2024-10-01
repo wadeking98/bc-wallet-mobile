@@ -7,6 +7,8 @@ import AltRootStack from './AltRootStack'
 const SwapRootStack: React.FC = () => {
     const [store, dispatch] = useStore<BCState>()
     const [useAltRootstack, setUseAltRootstack] = useState(!!store.useAltRootstack)
+    const [lastStackRouteName, setLastStackRouteName] = useState(store.lastStackRouteName)
+    const [prevStackRouteName, setPrevStackRouteName] = useState<string|undefined>(undefined)
     const { ColorPallet } = useTheme()
     const toggleRootStack = () => {
         dispatch({
@@ -19,9 +21,15 @@ const SwapRootStack: React.FC = () => {
         setUseAltRootstack(!!store.useAltRootstack)
     }, [store.useAltRootstack])
 
+    useEffect(() => {
+        console.log('store.lastStackRouteName', store.lastStackRouteName)
+        setPrevStackRouteName(lastStackRouteName)
+        setLastStackRouteName(store.lastStackRouteName)
+    }, [store.lastStackRouteName])
 
-    return (<>{!useAltRootstack ? <RootStack /> :
-        <AltRootStack />
+
+    return (<>{!useAltRootstack ? <RootStack initialRouteName={prevStackRouteName} /> :
+        <AltRootStack initialRouteName={prevStackRouteName} />
     }</>)
 }
 

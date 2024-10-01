@@ -31,6 +31,7 @@ export interface BCState extends BifoldState {
   developer: Developer
   dismissPersonCredentialOffer: DismissPersonCredentialOffer
   useAltRootstack: boolean
+  lastStackRouteName?: string
 }
 
 enum DeveloperDispatchAction {
@@ -113,6 +114,7 @@ export const initialState: BCState = {
   developer: developerState,
   dismissPersonCredentialOffer: dismissPersonCredentialOfferState,
   useAltRootstack: false,
+  lastStackRouteName: undefined,
 }
 
 const bcReducer = (state: BCState, action: ReducerAction<BCDispatchAction>): BCState => {
@@ -158,8 +160,8 @@ const bcReducer = (state: BCState, action: ReducerAction<BCDispatchAction>): BCS
       return newState
     }
     case RootStackDispatchAction.UPDATE_ALT_ROOTSTACK: {
-      const useAltRootstack: boolean = (action?.payload || []).pop() || false
-      return { ...state, useAltRootstack }
+      const {useAltRootstack, lastStackRouteName } = (action?.payload || []).pop() || false
+      return { ...state, useAltRootstack, lastStackRouteName }
     }
     default:
       return state
